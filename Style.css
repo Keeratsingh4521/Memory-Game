@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: rgb(97, 20, 133);
+}
+
+.wrapper {
+    height: 400px;
+    width: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #df000046;
+    
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 3px 10px rgba(233, 230, 230, 0.1);
+    background: #ffffff;
+    border-radius: 6px;
+    list-style: none;
+    padding: 20px;
+    border: 0.1px solid rgb(255, 255, 255);   
+}
+
+.card {
+    position: relative;
+    width: calc(100% / 4 - 10px);
+    height: calc(100% / 4 - 10px);
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.card.shake{
+
+    animation: shake 0.35s ease-in-out
+}
+
+@keyframes shake {
+
+    0% , 100%{
+        transform: translate(0);
+    }
+    20%{
+        transform: translate(-13px);
+    }
+    40%{
+        transform: translate(13px);
+    }
+    60%{
+        transform: translate(-8px);
+    }
+    80%{
+        transform: translate(8px);
+    }
+}
+.view-front, .view-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 7px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    pointer-events: none;
+    user-select: none;
+}
+
+.view-front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.view-back {
+    transform: rotateY(180deg);
+}
+
+.card.flip .view-front {
+    transform: rotateY(180deg);
+}
+
+.card.flip .view-back {
+    transform: rotateY(0deg);
+    z-index: 2;
+    backface-visibility: hidden;
+    transition: transform 0.25s linear;
+    
+}
+
+.card .view-back img {
+    max-width: 45px;
+}
+
+.view-front span {
+    font-size: 40px;
+    color: rgb(27, 143, 104);
+}
